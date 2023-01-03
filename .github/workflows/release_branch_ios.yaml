@@ -23,7 +23,6 @@ jobs:
       - run: flutter pub get
       - run: |
           cd ios
-          rm podfile.lock
           pod deintegrate
           pod repo update
           pod install
