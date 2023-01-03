@@ -14,11 +14,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  google_sign_in: ^4.5.1
-  cloud_firestore: ^0.13.7
-  firebase_auth: ^0.16.1
-  shared_preferences: ^0.5.8
-
 
 
 
