@@ -2,7 +2,7 @@ name: UAT iOS build generation for release branch
 
 on:
   push:
-    branches: [ github_action_testing ]
+    branches: [ master ]
 
 jobs:
   build:
