@@ -23,7 +23,6 @@ jobs:
           channel: 'stable'
           cache: true
       - run: flutter pub get
-      - run: flutter build apk --debug
       - run: flutter build apk --release
       - name: Upload APK
         uses: actions/upload-artifact@master
@@ -42,8 +41,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: build release
-        run: ./gradlew assembleRelease
       - name: Upload APK to firebase
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
