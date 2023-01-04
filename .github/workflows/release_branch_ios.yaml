@@ -20,6 +20,7 @@ jobs:
           flutter-version: '3.3.0'
           channel: 'stable'
           cache: true
+      - run: flutter clean
       - run: flutter pub get
       - run: |
           cd ios

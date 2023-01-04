@@ -22,6 +22,7 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
@@ -52,4 +53,9 @@ android {
 
 flutter {
     source '../..'
+}
+
+dependencies {
+  implementation platform('com.google.firebase:firebase-bom:31.1.1')
+  implementation 'com.google.firebase:firebase-analytics-ktx'
 }
