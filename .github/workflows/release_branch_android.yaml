@@ -46,7 +46,7 @@ jobs:
         with:
           appId: ${{secrets.FIREBASE_ANDROID_APPID}}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
-          group: testers
+          groups: testers
           file: build/app/outputs/flutter-apk/app-release.apk
       - name: Slack Notification
         uses: act10ns/slack@v1
