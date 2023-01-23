@@ -2,8 +2,7 @@ name: UAT build generation for release branch
 
 on:
   repository_dispatch:
-    types:
-      - configuration-check
+    types: [configuration-check]
 
 jobs:
   build_apk_upload_artifacts:
