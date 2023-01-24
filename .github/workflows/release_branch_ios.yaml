@@ -1,0 +1,45 @@
+name: UAT iOS build generation for release branch
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build iOS UAT builds
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '12.x'
+          cache: 'gradle'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.0'
+          channel: 'stable'
+          cache: true
+      - run: flutter clean
+      - run: flutter pub get
+      - run: |
+          cd ios
+          pod deintegrate
+          pod repo update
+          pod install
+      - run: |
+          flutter build ios --no-codesign
+          cd build/ios/iphoneos
+          mkdir Payload
+          cd Payload
+          ln -s ../Runner.app
+          cd ..
+          zip -r app.ipa Payload
+      - name: create upload IOS github release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/ios/iphoneos/app.ipa"
+          token: ${{secrets.TOKEN}}
+          tag: ios.v1.0.${{ github.run_number }}
+          allowUpdates: true
+          artifactContentType: "raw"
