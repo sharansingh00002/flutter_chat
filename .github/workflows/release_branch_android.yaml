@@ -1,9 +1,25 @@
 name: UAT build generation for release branch
 
 on:
-  repository_dispatch:
-    types:
-      - configuration-check
+  workflow_dispatch:
+    inputs:
+      android:
+        description: 'Build android build flag'
+        required: false
+        type: boolean
+        default: false
+      iOS:
+        description: 'Build iOS build flag'
+        required: false
+        type: boolean
+        default: false
+      environment:
+        description: 'Environment to run tests against'
+        type: choice
+        required: true
+        options:
+          - uat
+          - prod
 
 jobs:
   build_apk_upload_artifacts:
